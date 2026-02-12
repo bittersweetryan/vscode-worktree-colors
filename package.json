@@ -1,0 +1,62 @@
+{
+  "name": "cursor-worktree-colors",
+  "displayName": "Cursor Worktree Colors",
+  "description": "Apply subtle status bar colors per git worktree so multiple Cursor windows are easy to distinguish.",
+  "version": "0.0.3",
+  "publisher": "local-dev",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "files": [
+    "out/**",
+    "README.md",
+    "LICENSE",
+    "package.json"
+  ],
+  "contributes": {
+    "configuration": {
+      "title": "Cursor Worktree Colors",
+      "properties": {
+        "cursorWorktreeColors.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable automatic status bar coloring by git worktree."
+        },
+        "cursorWorktreeColors.saturation": {
+          "type": "number",
+          "default": 44,
+          "minimum": 20,
+          "maximum": 70,
+          "description": "Pastel color saturation percentage."
+        },
+        "cursorWorktreeColors.lightness": {
+          "type": "number",
+          "default": 78,
+          "minimum": 65,
+          "maximum": 90,
+          "description": "Pastel color lightness percentage."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -watch -p .",
+    "test": "vitest run",
+    "package:vsix": "npm run compile && npx @vscode/vsce package --allow-missing-repository"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
+  }
+}
