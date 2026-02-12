@@ -3,13 +3,31 @@
   "displayName": "Cursor Worktree Colors",
   "description": "Apply subtle status bar colors per git worktree so multiple Cursor windows are easy to distinguish.",
   "version": "0.0.3",
-  "publisher": "local-dev",
+  "publisher": "bittersweetryan",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bittersweetryan/vscode-worktree-colors.git"
+  },
+  "homepage": "https://github.com/bittersweetryan/vscode-worktree-colors#readme",
+  "bugs": {
+    "url": "https://github.com/bittersweetryan/vscode-worktree-colors/issues"
+  },
+  "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Visualization"
+  ],
+  "keywords": [
+    "cursor",
+    "vscode",
+    "git",
+    "worktree",
+    "status bar",
+    "pastel"
   ],
   "activationEvents": [
     "*"
@@ -17,6 +35,7 @@
   "main": "./out/extension.js",
   "files": [
     "out/**",
+    "images/**",
     "README.md",
     "LICENSE",
     "package.json"
@@ -51,7 +70,11 @@
     "compile": "tsc -p .",
     "watch": "tsc -watch -p .",
     "test": "vitest run",
-    "package:vsix": "npm run compile && npx @vscode/vsce package --allow-missing-repository"
+    "generate:assets": "python3 scripts/generate_assets.py",
+    "package:vsix": "npm run compile && npx @vscode/vsce package --allow-star-activation",
+    "publish:patch": "npm run compile && npx @vscode/vsce publish patch --allow-star-activation",
+    "publish:minor": "npm run compile && npx @vscode/vsce publish minor --allow-star-activation",
+    "publish:major": "npm run compile && npx @vscode/vsce publish major --allow-star-activation"
   },
   "devDependencies": {
     "@types/node": "^22.13.4",
